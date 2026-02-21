@@ -1,0 +1,74 @@
+{% extends 'customer/base.html' %} {% load static %} 
+{% block title %} Wholesale Snack Retail | Contact Us {% endblock title %}
+{% block content%}
+<div class="contact-main-page mt-60 mb-40 mb-md-40 mb-sm-40 mb-xs-40">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 offset-lg-1 col-md-12 order-1 order-lg-2">
+        <div class="contact-page-side-content">
+          <h3 class="contact-page-title">Contact Us</h3>
+          <p class="contact-page-message mb-25">
+            Welcome to Wholesale Snack Retail, your trusted source for premium quality snacks at bulk prices. We specialize in providing businesses and retailers with the finest selection of snacks, carefully sourced from the best manufacturers and suppliers.
+            Our mission is to offer high-quality, delicious snacks while ensuring excellent customer service. Whether you're a retailer, event organizer, or simply love snacks in bulk, we have a wide variety of options to meet your needs.
+            Join us in delivering the best snacking experience to customers everywhere!
+          </p>
+          <div class="single-contact-block">
+            <h4><i class="fa fa-fax"></i> Address</h4>
+            <p>
+              ADDRESS: No.24 , APMC Cortan Market , Kheda-Bagodara      
+              Highway, Dholka, Ahmedabad     
+            </p>
+          </div>
+          <div class="single-contact-block">
+            <h4><i class="fa fa-phone"></i> Phone</h4>
+            <p>PHONE: +91 9662226444 </p>
+            <!-- <p>Hotline: 1009 678 456</p> -->
+          </div>
+          <div class="single-contact-block last-child">
+            <h4><i class="fa fa-envelope-o"></i> Email</h4>
+            <!-- <p>yourmail@domain.com</p> -->
+            <p>EMAIL:  anandmodi216@gmail.com</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12 order-2 order-lg-1">
+        <div class="contact-form-content pt-sm-55 pt-xs-55">
+          <h3 class="contact-page-title">Tell Us Your Message</h3>
+          <div class="contact-form">
+
+            <!-- form start -->
+            <form id="contact-form" action="/customer/Contact" method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                <label>Your Name <span class="required">*</span></label>
+                <input type="text" name="customerName" id="customerName" required />
+              </div>
+              <div class="form-group">
+                <label>Your Email <span class="required">*</span></label>
+                <input type="email" name="customerEmail" id="customerEmail" required />
+              </div>
+              <div class="form-group">
+                <label>Subject</label>
+                <input type="text" name="contactSubject" id="contactSubject" />
+              </div>
+              <div class="form-group mb-30">
+                <label>Your Message</label>
+                <textarea name="contactMessage" id="contactMessage"></textarea>
+              </div>
+              <div class="form-group">
+                <button type="submit" value="submit" id="submit" class="li-btn-3" name="submit">
+                  send
+              </button>
+              </div>
+            </form>
+
+            <!-- form End -->
+
+          </div>
+          <!-- <p class="form-messege"></p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

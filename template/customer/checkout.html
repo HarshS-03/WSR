@@ -1,0 +1,162 @@
+{% extends 'customer/base.html' %} {% load static %}
+{% block title %} Wholesale Snack Retail | Checkout {% endblock title %}
+{% block content %}
+<div class="checkout-area pt-60 pb-30">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-6 col-12">
+        <form action="/customer/checkout" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="productdetails" id="productdetails">
+            <input type="hidden" name="totalprice" id="totalprice">
+            <div class="checkbox-form">
+                <h3>Billing Details</h3>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="checkout-form-list">
+                      <label></label>
+                      <input placeholder="Enter Email Id" type="hidden" name="email" id="email" value="{{user.email}}" />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="checkout-form-list">
+                      <label>First Name <span class="required">*</span></label>
+                      <input placeholder="" type="text" name="firstname" id="firstname" required />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="checkout-form-list">
+                      <label>Last Name <span class="required">*</span></label>
+                      <input placeholder="" type="text" name="lastname" id="lastname" required />
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="checkout-form-list">
+                      <label>Address <span class="required">*</span></label>
+                      <input placeholder="Street address" type="text" name="address" id="address" required />
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="checkout-form-list">
+                      <input placeholder="Apartment, suite, unit etc. (optional)" type="text" name="address1" id="address1"
+                        required />
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="checkout-form-list">
+                      <label>Town / City <span class="required">*</span></label>
+                      <input type="text" name="city" id="city" required />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="checkout-form-list">
+                      <label>State / County <span class="required">*</span></label>
+                      <input placeholder="" type="text" name="state" id="state" required />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="checkout-form-list">
+                      <label>Pincode / Zip <span class="required">*</span></label>
+                      <input placeholder="" type="text" name="pincode" id="pincode" required />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="checkout-form-list">
+                      <label>Phone <span class="required">*</span></label>
+                      <input type="text" name="phone" id="phone" required />
+
+                      <input value="Place order" class="place" type="submit" />
+
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-12">
+            <div class="your-order">
+              <h3>Your order</h3>
+              <div class="your-order-table table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="cart-product-name">Product</th>
+                      <th class="cart-product-total">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tHead">              
+
+                  </tbody>
+                  <tfoot>
+                    <tr class="order-total">
+                      <th>Order Total</th>
+                      <td>
+                        <strong><span class="amount" id="amount">₹00.00</span></strong>
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <!-- <div class="payment-method">
+                <div class="payment-accordion">
+                  <div class="order-button-payment">
+                    <input value="Place order" type="submit" />
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+
+  {% block js %}
+
+if(localStorage.getItem('cart') == null) {
+  let myStr = `<h1> Add Some Items Before Checkout </h1>`;
+  $('#table').innerHTML = myStr;
+}
+else{
+  cart = JSON.parse(localStorage.getItem('cart'));
+  document.getElementById('cartTotal').innerHTML = Object.keys(cart).length;
+}
+
+
+if($.isEmptyObject(cart)) {
+  mystr = `Your cart is empty ,plaese add some items to your cart before checking out !`;
+  document.getElementById('items').innerHTML = mystr;
+}
+else{
+
+  for(item in cart) {
+    let name = cart[item][0];
+    let price = cart[item][1];
+    let qty = cart[item][2];
+
+    let subTotal=price*qty;
+
+
+    mystr = ` <tr class="cart_item">
+        <td class="cart-product-name">
+        ${name}<strong class="product-quantity">
+        × ${qty}</strong>
+        </td>
+        <td class="cart-product-total">
+        <span class="amount">${subTotal}</span>
+        </td>
+        </tr>`;
+    $('#tHead').append(mystr);
+  }
+}
+document.getElementById('totalprice').value = localStorage.getItem("total");
+document.getElementById('amount').innerHTML = localStorage.getItem("total");
+document.getElementById('productdetails').value = cart = JSON.stringify(cart);
+
+{% if done %}
+    //alert("Thanks for ordering with us.")
+    localStorage.clear();
+    document.location = "/customer/payment_process";
+    {% endif %}
+  {% endblock %}

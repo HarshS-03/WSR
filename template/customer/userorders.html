@@ -1,0 +1,90 @@
+{% extends 'customer/base.html' %}
+{% block title %}Wholesale Snack Retail | User Orders{% endblock %}
+
+{% block css %} 
+
+.box{
+  height: 75px;
+  width: 1000px;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+  margin:10px;
+}
+{% endblock %}
+
+{% load static %} {% block content %}
+<!-- <div class="page-section mt-10 mb-10">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-12 col-xs-12 col-lg-8">
+       
+        {% if orders %}
+        
+          {% for orders in orders  %}
+          <a href="/customer/orderdetails/{{orders.orderId}}">
+          <div class="box" > 
+            <p>Order ID:{{orders.orderId}}
+            {% if orders.status == "Done"%}
+              <b style="color: green;" >Done</b>
+            {% else %}
+            <b style="color: rgb(0, 0, 0);" >Pending</b>
+            </p>            
+            {% endif %}
+          </div>
+        </a>
+
+          
+          {% endfor %}
+        
+        {% endif %}
+
+       
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="wishlist-area pt-60 pb-60">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <form action="#">
+          <div class="table-content table-responsive">
+            {% if orders %}
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="cart-product-name">Order-Id</th>
+                  <th class="cart-product-name">Total Price</th>
+                  <th class="li-product-stock-status">Order Status</th>
+                  <th class="li-product-add-cart">Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for orders in orders  %}
+                <tr>
+                  <td>{{orders.orderId}}</td>
+                  <td>₹{{orders.totalprice}}</td>
+                  {% if orders.status == "Done"%}
+                  <td>Done</td>
+                  {% else %}
+                  <td>Pending</td>
+                  {% endif %}
+                  <td><a class="details" href="/customer/orderdetails/{{orders.orderId}}">Details</td>
+                  </tr>
+                {% endfor %}               
+
+
+              </tbody>
+            </table>
+            {% endif %}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

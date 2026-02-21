@@ -1,0 +1,684 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+  <!-- index-431:41-->
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>{% block title %}Wholesale Snack Retail{% endblock title %}</title>
+    <meta name="description" content="" />
+    <meta name="theme-color" content="#fafaaa" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="{% static 'customer\logo.png' %}"
+    />
+    <!-- Material Design Iconic Font-V2.2.0 -->
+    <link
+      rel="stylesheet"
+      href="{% static 'customer/css/material-design-iconic-font.min.css'%}"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="{% static 'customer/css/font-awesome.min.css'%}"
+    />
+    <!-- Font Awesome Stars-->
+    <link
+      rel="stylesheet"
+      href="{% static 'customer/css/fontawesome-stars.css'%}"
+    />
+    <!-- Meanmenu CSS -->
+    <link rel="stylesheet" href="{% static 'customer/css/meanmenu.css'%}" />
+    <!-- owl carousel CSS -->
+    <link
+      rel="stylesheet"
+      href="{% static 'customer/css/owl.carousel.min.css'%}"
+    />
+    <!-- Slick Carousel CSS -->
+    <link rel="stylesheet" href="{% static 'customer/css/slick.css'%}" />
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="{% static 'customer/css/animate.css'%}" />
+    <!-- Jquery-ui CSS -->
+    <link
+      rel="stylesheet"
+      href="{% static 'customer/css/jquery-ui.min.css'%}"
+    />
+    <!-- Venobox CSS -->
+    <link rel="stylesheet" href="{% static 'customer/css/venobox.css'%}" />
+    <!-- Nice Select CSS -->
+    <link rel="stylesheet" href="{% static 'customer/css/nice-select.css'%}" />
+    <!-- Magnific Popup CSS -->
+    <link
+      rel="stylesheet"
+      href="{% static 'customer/css/magnific-popup.css'%}"
+    />   
+    <!-- Helper CSS -->
+    <link rel="stylesheet" href="{% static 'customer/css/helper.css'%}" />
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="{% static 'customer/css/style.css'%}" />
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'customer/css/responsive.css'%}" />
+    <!-- Modernizr js -->
+    <script src="{% static 'customer/js/vendor/modernizr-2.8.3.min.js'%}"></script>
+    
+    <link rel="stylesheet" href="{% static 'customer/css/responsive.css'%}" />
+    <link rel="stylesheet" href="{% static 'customer/css/final.css'%}" />
+   
+    <style>
+      {% block css %} {% endblock %}
+    </style>
+  </head>
+
+  <body>
+    <!--[if lt IE 8]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="http://browsehappy.com/">upgrade your browser</a> to improve
+        your experience.
+      </p>
+    <![endif]-->
+    <!-- Begin Body Wrapper -->
+    <div class="body-wrapper">
+      <!-- Begin Header Area -->
+
+      {% comment %}!Header Begin{% endcomment %} {% load static %}
+      <header>
+        <!-- Begin Header Middle Area -->
+        <div class="header-middle pl-sm-0 pr-sm-0 pl-xs-0 pr-xs-0 p">
+          <div class="container">
+            <div class="row">
+              <!-- Begin Header Logo Area -->
+              <div class="col-lg-3">
+                <div class="logo pb-sm-20 pb-xs-20">
+                  <a href="/customer/Home">
+                    <img
+                      class="Etechlogo"
+                      src="{% static 'customer\logo.png.'%}"
+                      alt=""
+                    />
+                  </a>
+                </div>
+              </div>
+              <!-- Header Logo Area End Here -->
+              <!-- Begin Header Middle Right Area -->
+              <div class="col-lg-9 pl-20 ml-sm-15 ml-xs-15">
+                <!-- Begin Header Middle Searchbox Area -->
+                <form action="/customer/search" class="hm-searchbox search">
+                  <a
+                    href="/customer/login"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    class="filter"
+                  >
+                    <i
+                      class="fa fa-filter fa-2x s1"
+                      aria-hidden="true"
+                      style="color: #1c1c1cdd"
+                    ></i>
+                  </a> 
+
+                  <input
+                    type="text"
+                    placeholder="Enter your search key ..."
+                    name="search"
+                    id="search"
+                  />
+                  <button type="submit" style="color:black; background-color: #ffc107; border: none; padding: 8px 16px; margin-left: px;">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </form>
+
+                <!--bootstrap modal for filteration  start-->
+                <div
+                  class="modal fade"
+                  id="exampleModal"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">
+                          Filter
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        <form action="/customer/filter" method="get">
+                          <label for="price">Category :</label><br />
+                          <select
+                            class="nice-select select-search-category"
+                            id="category"
+                            name="category"
+                          >
+                            <option value="all">All</option>
+                            {% for cat in cat %}
+                            <option value="{{ cat.name }}">
+                              {{ cat.name }}
+                            </option>
+                            {% endfor %}</select
+                          ><br />
+                          <br />
+                          <br />
+
+                          <label for="price">Price :</label><br />
+                          <select
+                            class="nice-select select-search-category"
+                            id="price"
+                            name="price"
+                          >
+                            {% for price in price %}
+                            <option value="{{ price }}">
+                              {{ price }}
+                            </option>
+                            {% endfor %}
+                            <option value="all">all</option>
+                            <option value="5">0-5</option>
+                            <option value="10">5-10</option>
+                            <option value="30">10-30</option>
+                            <option value="50">30-50</option>
+                            
+                          </select> 
+
+                          <br />
+                          <br />
+                          <div class="modal-footer">
+                            <input
+                              type="submit"
+                              class="btn"
+                              value="submit"
+                              style="background-color: #fed700"
+                            />
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--bootstrap modal for filteration  end-->
+
+                <!-- Header Middle Searchbox Area End Here -->
+                <!-- Begin Header Middle Right Area -->
+                <div class="header-middle-right">
+                  <ul class="hm-menu">
+                    <!-- Begin Header Middle Wishlist Area -->
+                    <!-- <li class="hm-wishlist search">
+                      <a href="/customer/Wish">
+                        <span class="cart-item-count wishlist-item-count"
+                          >0</span
+                        >
+                        <i class="fa fa-heart-o"></i>
+                      </a>
+                    </li> -->
+                    <!-- Header Middle Wishlist Area End Here -->
+                    <!-- Begin Header Mini Cart Area -->
+                    {% if user.is_authenticated %}
+                    <li class="hm-minicart search">
+                      <div class="hm-minicart-trigger">
+                        <span class="item-icon"></span>
+                        <span class="cart-item-count" id="cartTotal">0 </span>
+                      </div>
+                      <span></span>
+                      <div class="minicart">
+                        <div class="minicart-button">
+                          <a
+                            href="/customer/addCart"
+                            class="li-button li-button-fullwidth li-button-dark"
+                          >
+                            <span>View Full Cart</span>
+                          </a>
+                          <a
+                            href="/customer/checkout"
+                            class="li-button li-button-fullwidth"
+                          >
+                            <span>Checkout</span>
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                    {% endif %}
+                    <!-- Header Mini Cart Area End Here -->
+                  </ul>
+                </div>
+                <!-- Header Middle Right Area End Here -->
+              </div>
+              <!-- Header Middle Right Area End Here -->
+            </div>
+          </div>
+        </div>
+        <!-- Header Middle Area End Here -->
+        <!-- Begin Header Bottom Area -->
+        <div class="header-bottom header-sticky d-none d-lg-block d-xl-block">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <!-- Begin Header Bottom Menu Area -->
+                <div class="hb-menu search">
+                  <nav>
+                    <ul>
+                      <li class="">
+                        <a href="/customer/Home">Home</a>
+                      </li>
+                      <!-- <li>
+                    <a href="#">Home</a>
+                  </li> -->
+
+                      <li class="dropdown-holder">
+                        <a href="/customer">Categories</a>
+                        <ul class="hb-dropdown">
+                          <!-- !Category Begin -->
+                          {% for cat in cat %}
+                          <li class="sub-dropdown-holder">
+                            <a href="/customer/category/{{cat.name}}">
+                              <i class=""> {{ cat.name }}</i></a
+                            >
+                          </li>
+                          {% endfor %}
+                        </ul>
+                      </li>
+                      <li><a href="/customer/About">About Us</a></li>
+                      <li><a href="/customer/Contact">Contact</a></li>
+
+                      {% if user.is_authenticated %}
+                      <li><a href="/customer/ordertrack/">Order Track</a></li>
+                      <li><a href="/customer/userorders">Orders</a></li>
+
+                      {% if user.is_superuser %}
+                      <li><a href="/customer/analysis">Analysis</a></li>                    
+                      
+                      <li>
+                        <a href="/customer/logout"
+                          ><i
+                            class="fa fa-sign-out"
+                            aria-hidden="true"
+                            style="margin-left: 240px"
+                            >LOGOUT</i
+                          ></a
+                        >
+                      </li>
+                      {% else %}
+                      <li>
+                        <a href="/customer/logout"
+                          ><i
+                            class="fa fa-sign-out"
+                            aria-hidden="true"
+                           
+
+                            style="margin-left: 385px"
+                            >LOGOUT</i
+                          ></a
+                        >
+                      </li>
+                      {% endif %}
+                      
+
+                      <li class="split1" style="right: -67px;!important">
+                        <a href="/customer/login">
+                          <i class="fa fa-user"> {{user.username}}</i>
+                        </a>
+                      </li>
+
+                      {% else %}
+
+                      <li class="split1" >
+                        <a href="/customer/login">
+                          <i class="fa fa-user"> Login</i>
+                        </a>
+                      </li>
+
+                      <li class="split">
+                        <a href="/customer/register">
+                          <i class="fa fa-user-plus" aria-hidden="true"
+                            >Registration</i
+                          >
+                        </a>
+                      </li>
+
+                      {% endif %}
+                    </ul>
+                  </nav>
+                </div>
+                <!-- Header Bottom Menu Area End Here -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Header Bottom Area End Here -->
+        <!-- Begin Mobile Menu Area -->
+        <div class="mobile-menu-area d-lg-none d-xl-none col-12">
+          <div class="container">
+            <div class="row">
+              <div class="mobile-menu"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Mobile Menu Area End Here -->
+      </header>
+
+      <!-- Header Area End Here -->
+
+      <!-- messages by bootstrap start-->
+
+      
+      <!-- messages by bootstrap end-->
+
+      {% block content %}
+      <div class="container">
+        {% for message in messages %}
+        <div
+          class="alert alert-{{ message.tags }} alert-dismissible fade show my-4"
+          role="alert"
+        >
+          {{message}}
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+        {% endfor %}
+      </div> 
+      {% endblock %}
+
+      <!-- Begin Footer Area -->
+      {% load static %}
+      <div class="footer">
+        <!-- Begin Footer Static Top Area -->
+        <div class="footer-static-top">
+          <div class="container">
+            <!-- Begin Footer Shipping Area -->
+            <div class="footer-shipping pt-60 pb-55 pb-xs-25">
+              <div class="row">
+                <!-- Begin Li's Shipping Inner Box Area -->
+                <div class="col-lg-3 col-md-6 col-sm-6 pb-sm-55 pb-xs-55">
+                  <div class="li-shipping-inner-box">
+                    <div class="shipping-icon">
+                      <img
+                        src="{% static 'customer/images/shipping-icon/1.png' %}"
+                        alt="Shipping Icon"
+                      />
+                    </div>
+                    <div class="shipping-text">
+                      <h2>Free Delivery</h2>
+                      <p>And free returns. See checkout for delivery dates.</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Li's Shipping Inner Box Area End Here -->
+                <!-- Begin Li's Shipping Inner Box Area -->
+                <div class="col-lg-3 col-md-6 col-sm-6 pb-sm-55 pb-xs-55">
+                  <div class="li-shipping-inner-box">
+                    <div class="shipping-icon">
+                      <img
+                        src="{% static 'customer/images/shipping-icon/2.png' %}"
+                        alt="Shipping Icon"
+                      />
+                    </div>
+                    <div class="shipping-text">
+                      <h2>Safe Payment</h2>
+                      <p>
+                        Pay with the world's most popular and secure payment
+                        methods.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Li's Shipping Inner Box Area End Here -->
+                <!-- Begin Li's Shipping Inner Box Area -->
+                <div class="col-lg-3 col-md-6 col-sm-6 pb-xs-30">
+                  <div class="li-shipping-inner-box">
+                    <div class="shipping-icon">
+                      <img
+                        src="{% static 'customer/images/shipping-icon/3.png' %}"
+                        alt="Shipping Icon"
+                      />
+                    </div>
+                    <div class="shipping-text">
+                      <h2>Shop with Confidence</h2>
+                      <p>
+                        Our Buyer Protection covers your purchasefrom click to delivery.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Li's Shipping Inner Box Area End Here -->
+                <!-- Begin Li's Shipping Inner Box Area -->
+                <div class="col-lg-3 col-md-6 col-sm-6 pb-xs-30">
+                  <div class="li-shipping-inner-box">
+                    <div class="shipping-icon">
+                      <img
+                        src="{% static 'customer/images/shipping-icon/4.png' %}"
+                        alt="Shipping Icon"
+                      />
+                    </div>
+                    <div class="shipping-text">
+                      <h2>24/7 Help Center</h2>
+                      <p>Have a question? Call a Specialist or chat online.</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Li's Shipping Inner Box Area End Here -->
+              </div>
+            </div>
+            <!-- Footer Shipping Area End Here -->
+          </div>
+        </div>
+        <!-- Footer Static Top Area End Here -->
+        <!-- Begin Footer Static Middle Area -->
+        <div class="footer-static-middle">
+          <div class="container">
+            <div class="footer-logo-wrap pt-50 pb-35">
+              <div class="row">
+                <!-- Begin Footer Logo Area -->
+                 <!-- Begin Footer Logo Area -->
+                <div class="col-lg-6 col-md-3">
+                  <div class="footer-logo">
+                    <!-- src="{% static 'customer/images/menu/logo/5.jpeg'%}" -->
+                    <img
+                      class="footerlogo"
+                      src="{% static 'customer\logo.png.'%}"
+                      alt="Footer Logo"
+                    />
+                  </div>
+                  <ul class="des">
+                    <li>
+                      <span>Address:</span>
+                      No.24 , APMC Cortan Market , Kheda-Bagodara      
+                      Highway, Dholka, Ahmedabad     
+                    </li>
+                    <li>
+                      <span>Phone: </span>
+                      <a href="#">+91  9662226444</a>
+                    </li>
+                    <li>
+                      <span>Email: </span>
+                      <a href="">anandmodi216@gmail.com</a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- Footer Logo Area End Here -->
+
+                <!-- Begin Footer Block Area -->
+                <div class="col-xl-2 col-lg-2">
+                  <div class="footer-block">
+                    <h3 class="footer-block-title">Our company</h3>
+                    <ul>
+                      <li><a href="/customer/About">About us</a></li>
+                      <li><a href="/customer/Contact">Contact us</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- Footer Block Area End Here -->
+                <!-- Begin Footer Block Area -->
+                <div class="col-lg-4">
+                  <div class="footer-block">
+                    <h3 class="footer-block-title">Follow Us</h3>
+                    <ul class="social-link">
+                      <li class="twitter">
+                        <a
+                          href="https://twitter.com/"
+                          data-toggle="tooltip"
+                          target="_blank"
+                          title="Twitter"
+                        >
+                          <i class="fa fa-twitter"></i>
+                        </a>
+                      </li>
+                      <li class="rss">
+                        <a
+                          href="https://rss.com/"
+                          data-toggle="tooltip"
+                          target="_blank"
+                          title="RSS"
+                        >
+                          <i class="fa fa-rss"></i>
+                        </a>
+                      </li>
+                      <li class="google-plus">
+                        <a
+                          href="https://www.plus.google.com/discover"
+                          data-toggle="tooltip"
+                          target="_blank"
+                          title="Google Plus"
+                        >
+                          <i class="fa fa-google-plus"></i>
+                        </a>
+                      </li>
+                      <li class="facebook">
+                        <a
+                          href="https://www.facebook.com/"
+                          data-toggle="tooltip"
+                          target="_blank"
+                          title="Facebook"
+                        >
+                          <i class="fa fa-facebook"></i>
+                        </a>
+                      </li>
+                      <li class="youtube">
+                        <a
+                          href="https://www.youtube.com/"
+                          data-toggle="tooltip"
+                          target="_blank"
+                          title="Youtube"
+                        >
+                          <i class="fa fa-youtube"></i>
+                        </a>
+                      </li>
+                      <li class="instagram">
+                        <a
+                          href="https://www.instagram.com/"
+                          data-toggle="tooltip"
+                          target="_blank"
+                          title="Instagram"
+                        >
+                          <i class="fa fa-instagram"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- Begin Footer Newsletter Area -->
+                  
+                      </div>
+                    </form>
+                  </div>
+                  <!-- Footer Newsletter Area End Here -->
+                </div>
+                <!-- Footer Block Area End Here -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Footer Static Middle Area End Here -->
+        <!-- Begin Footer Static Bottom Area -->
+
+        <!-- Footer Static Bottom Area End Here -->
+      </div>
+      <!-- Footer Area End Here -->
+    </div>
+    <!-- Body Wrapper End Here -->
+    <!-- jQuery-V1.12.4 -->
+    <script src="{% static 'customer/js/vendor/jquery-1.12.4.min.js'%}"></script>
+
+    <!-- Popper js -->
+    <script src="{% static 'customer/js/vendor/popper.min.js'%}"></script>
+    <!-- Bootstrap V4.1.3 Fremwork js -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Ajax Mail js -->
+    <script src="{% static 'customer/js/ajax-mail.js'%}"></script>
+    <!-- Meanmenu js -->
+    <script src="{% static 'customer/js/jquery.meanmenu.min.js'%}"></script>
+    <!-- Wow.min js -->
+    <script src="{% static 'customer/js/wow.min.js'%}"></script>
+    <!-- Slick Carousel js -->
+    <script src="{% static 'customer/js/slick.min.js'%}"></script>
+    <!-- Owl Carousel-2 js -->
+    <script src="{% static 'customer/js/owl.carousel.min.js'%}"></script>
+    <!-- Magnific popup js -->
+    <script src="{% static 'customer/js/jquery.magnific-popup.min.js'%}"></script>
+    <!-- Isotope js -->
+    <script src="{% static 'customer/js/isotope.pkgd.min.js'%}"></script>
+    <!-- Imagesloaded js -->
+    <script src="{% static 'customer/js/imagesloaded.pkgd.min.js'%}"></script>
+    <!-- Mixitup js -->
+    <script src="{% static 'customer/js/jquery.mixitup.min.js'%}"></script>
+    <!-- Countdown -->
+    <script src="{% static 'customer/js/jquery.countdown.min.js'%}"></script>
+    <!-- Counterup -->
+    <script src="{% static 'customer/js/jquery.counterup.min.js'%}"></script>
+    <!-- Waypoints -->
+    <script src="{% static 'customer/js/waypoints.min.js'%}"></script>
+    <!-- Barrating -->
+    <script src="{% static 'customer/js/jquery.barrating.min.js'%}"></script>
+    <!-- Jquery-ui -->
+    <script src="{% static 'customer/js/jquery-ui.min.js'%}"></script>
+    <!-- Venobox -->
+    <script src="{% static 'customer/js/venobox.min.js'%}"></script>
+    <!-- Nice Select js -->
+    <script src="{% static 'customer/js/jquery.nice-select.min.js'%}"></script>
+    <!-- ScrollUp js -->
+    <script src="{% static 'customer/js/scrollUp.min.js'%}"></script>
+    <!-- Main/Activator js -->
+    <script src="{% static 'customer/js/main.js'%}"></script>
+  </body>
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    {% block js %}
+    console.log("base Template js checking");
+    {% endblock %}
+  </script>
+
+  <!-- index-431:47-->
+</html>

@@ -1,0 +1,26 @@
+{% extends 'customer/base.html' %} {% load static %} 
+{% block title %} Wholesale Snack Retail | Cancel Order{% endblock title %}
+{% block content %}
+
+<div class="content-wraper pt-20 pb-100">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <form action="/customer/cancelorder/{{orders.orderId}}" method="post">
+          {% csrf_token %}
+          <label for="Reason">Describe Reason to Cancel Order :</label>
+          <textarea name="reason" id="reason" cols="30" rows="10"></textarea>
+          <input type="submit" value="Confirm" class="btn btn-warning">
+        </form>
+    
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
+

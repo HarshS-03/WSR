@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wholesale Snack Retail Dashboard</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    /* styles.css */
+body {
+    background-color: #f8f9fa;
+    padding-top: 20px;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+</style>
+
+<body>
+
+    <div class="container">
+        <div class="fa fa-search"> 
+        <a href="/customer" >Home</a>
+    </div>
+        <h1 class="text-center">Wholesale Snack Retail Dashboard</h1>
+        <div class="row mt-4">
+            
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Revenue</h5>
+                        <p class="card-text" id="totalRevenue">₹{{total}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Users</h5>
+                        <p class="card-text" id="totalUsers">{{users}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="row mt-4">
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Average Profit</h5>
+                        <p class="card-text" id="averageProfit">₹{{total}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Products we have :</h5>
+                        <p class="card-text" id="averageProfit">{{ products }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Orders</h5>
+                        <p class="card-text" id="totalProfit">{{orders}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Average orders per Month</h5>
+                        <p class="card-text" id="averageProfit">{{ orderspermonth }}</p>
+                    </div>
+                </div>
+            </div>
+
+   
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Number of Pending orders</h5>
+                        <p class="card-text" id="averageProfit">{{ pendingOrders }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Cancelled orders</h5>
+                        <p class="card-text" id="averageProfit">{{ canceledOrder }}</p>
+                    </div>
+                </div>
+            </div>
+
+  
+
+
+        </div>
+        </div>
+
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+</body>
+
+</html>

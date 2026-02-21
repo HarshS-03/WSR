@@ -1,0 +1,156 @@
+{% extends 'customer/base.html' %} {% load static %} 
+{% block title %} Wholesale Snack Retail | Product Page {% endblock title %}
+{% block content%}
+<style>
+  .h {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  .box {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+  }
+  .box2{
+    padding-left:10px;
+  }
+  .product-div {
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px; /* Optional: Rounded corners */
+  }
+
+  .review-section {
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px; /* Optional: Rounded corners */
+    margin-bottom: 50px; /* added margin to avoid overlap with footer */
+  }
+
+  .product-name-heading {
+    font-size: 1.2em; /* Make the product name larger */
+    font-weight: bold; /* Make the product name bold */
+    margin-bottom: 10px; /* Add some space below the product name */
+    text-align: center; /* Center the product name */
+  }
+
+  .review-header {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .review-form-container {
+    display: flex;
+    justify-content: center;
+  }
+  .review-form-container form {
+    width: 100%;
+    max-width: 600px;
+  }
+  .review-form-container button{
+    display: block;
+    margin: 10px auto;
+  }
+  .fade-text {
+    opacity: 0.7; /* Adjust opacity for the fade effect */
+    transition: opacity 0.3s ease; /* Add transition for smooth effect */
+    text-align: center;
+  }
+  .fade-text:hover {
+    opacity: 1; /* Restore full opacity on hover */
+  }
+</style>
+<div class="content-wraper mt-50">
+  <div class="container">
+    <div class="product-div">
+      <div class="row single-product-area">
+        <div class="col-lg-5 col-md-6">
+          <div class="product-details-left">
+            <div class="product-details-images slider-navigation-1">
+              <div class="lg-image">
+                <img src="/media/{{product.image}}" alt="product image" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7 col-md-6">
+          <div class="product-details-view-content sp-normal-content pt-60">
+            <div class="product-info">
+              <h2 id="prodName{{product.pid}}">{{ product.name }}</h2>
+              <div class="price-box pt-20">
+                <span class="new-price new-price-2" id="prodPrice{{product.pid}}"
+                  >₹{{ product.price }}</span
+                >
+              </div>
+              <div class="product-desc">
+                <p>
+                  <span>{{product.desc}}</span>
+                </p>
+              </div>
+              <div class="single-add-to-cart">
+                <form action="#" class="cart-quantity">
+                  {% if user.is_authenticated %}
+                  <a
+                    href="/customer/addCart"
+                    class="cart add"
+                    id="pr{{product.pid}}"
+                    >Add to cart</a
+                  >
+                  {% else %}
+                  <h4><a href="/customer/login">Login to Buy Products</a></h4>
+                  {% endif %}
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="review-section tab-content">
+      <div id="reviews" class="tab-pane active">
+        <h2 class="review-header">Product Reviews</h2>
+        <div class="row justify-content-evenly">
+          <div class="col-12">
+            {% if review %}
+              {% for review in review %}
+                <div class="box"><b>{{review.user.username}}:</b><br><div class="box2">{{review.message}}</div></div>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="review-form-container">
+          <form action="/customer/review" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{ product.pid }}">
+            <h3 class="product-name-heading">Product: {{ product.name }}</h3>
+            <label for="message" class="mt-20">Message</label>
+            <textarea name="message" id="message" cols="30" rows="10"></textarea>
+            <button type="submit" class="cart add">Submit Review</button>
+          </form>
+        </div>
+        {% else %}
+        <h5 class="fade-text"><a href="/customer/login">Login</a> to write a review.</h5>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block js %} if(localStorage.getItem('cart')==null){ var
+cart={}; localStorage.setItem('cart',JSON.stringify(cart)); } else{ cart =
+JSON.parse(localStorage.getItem('cart'));
+document.getElementById('cartTotal').innerHTML = Object.keys(cart).length; }
+$('.cart').click(function(){ var idstr = this.id.toString(); let ID =
+idstr.substring(2,); let name =
+document.getElementById(`prodName${ID}`).innerHTML.trim(); let price =
+Number.parseInt(document.getElementById(`prodPrice${ID}`).innerHTML.trim().substring(1,));
+console.log(name+price); let qty = 1; cart[idstr] = [name,price,qty];
+localStorage.setItem('cart',JSON.stringify(cart));
+document.getElementById('cartTotal').innerHTML = Object.keys(cart).length; });
+{% endblock %}

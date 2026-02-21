@@ -1,0 +1,136 @@
+{% extends 'customer/base.html' %} {% load static %}
+{% block content%}
+<title>Wholesale Snack Retail | About Us</title>
+<style>
+  .text {
+    font-size: 20px;
+    color: #000000ce;
+  }
+
+  .team-thumb {
+    width: 100%;
+    aspect-ratio: 3/4;
+    /* Maintains a consistent vertical ratio */
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .team-thumb:hover {
+    transform: translateY(-5px);
+  }
+
+  .team-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ensures images fill the area without stretching */
+  }
+
+  .team-member {
+    padding: 15px;
+    background: #fff;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+  }
+
+  .team-member:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .team-content h3 {
+    margin-top: 20px;
+    font-weight: 700;
+  }
+
+  .team-content a {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .team-content a:hover {
+    color: #fed700;
+  }
+</style>
+<div class="about-us-wrapper pt-60 pb-40">
+  <div class="container">
+    <div class="row">
+      <!-- About Text Start -->
+      <div class="col-lg-12 order-last order-lg-first">
+        <div class="about-text-wrap">
+          <h2 style="font-weight: 800; margin-bottom: 30px;"><span>Provide Best</span> Product For You</h2>
+          <div>
+            <p class="text">Welcome to <strong><b>Wholesale Snack Retail</b></strong>, your trusted source for premium
+              quality snacks at bulk prices.
+              We specialize in providing businesses and retailers with the finest selection of snacks, carefully sourced
+              from
+              the best manufacturers and suppliers.</p>
+          </div>
+          <div>
+            <p class="text">Our mission is to offer high-quality, delicious snacks while ensuring excellent customer
+              service.
+              Whether you're a retailer, event organizer, or simply love snacks in bulk, we have a wide variety of
+              options to meet your needs.</p>
+          </div>
+          <div>
+            <p class="text">Join us in delivering the best snacking experience to customers everywhere!</p>
+          </div>
+        </div>
+      </div>
+      <!-- About Text End -->
+      <div class="team-area pt-60 pt-sm-44">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="li-section-title capitalize mb-40">
+                <h3 align="center" style="font-size: 2.5rem; font-weight: 800;"><span>Our Team</span></h3>
+              </div>
+            </div>
+          </div>
+          <!-- section title end -->
+          <div class="row g-4">
+            <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="team-member">
+                <div class="team-thumb">
+                  <img src="{% static 'customer/images/team/Jigar.jpg' %}" alt="Jigar Agja" />
+                </div>
+                <div class="team-content text-center">
+                  <h3><strong>Jigar Agja</strong></h3>
+                  <a href="mailto:jigaragja11@gmail.com">jigaragja11@gmail.com</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="team-member">
+                <div class="team-thumb">
+                  <img src="{% static 'customer/images/team/harsh.jpeg' %}" alt="Harsh Shrimali" />
+                </div>
+                <div class="team-content text-center">
+                  <h3><strong>Harsh Shrimali</strong></h3>
+                  <a href="mailto:harshshrimali03@outlook.com">harshshrimali03@outlook.com</a>
+                </div>
+              </div>
+            </div>
+            <!-- end single team member -->
+            <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="team-member">
+                <div class="team-thumb">
+                  <img src="{% static 'customer/images/team/manav.jpg' %}" alt="Manav Modi" />
+                </div>
+                <div class="team-content text-center">
+                  <h3><strong>Manav Modi</strong></h3>
+                  <a href="mailto:manavmodi09@gmail.com">manavmodi09@gmail.com</a>
+                </div>
+              </div>
+            </div>
+            <!-- end single team member -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

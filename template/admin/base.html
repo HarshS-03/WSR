@@ -1,0 +1,24 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ title }} | Admin{% endblock %}
+{% block extrahead %}
+{{ block.super }}
+<script>
+// Block admin in multiple tabs using localStorage
+(function () {
+    const tabKey = 'admin_tab_lock';
+
+    // If there's already a tab using admin, redirect this one
+    if (localStorage.getItem(tabKey)) {
+        alert("Admin panel is already open in another tab!");
+        window.location.href = "/";  // Redirect to homepage or anywhere else
+    } else {
+        localStorage.setItem(tabKey, 'locked');
+    }
+
+    // Clear lock when tab is closed/refreshed
+    window.addEventListener('beforeunload', function () {
+        localStorage.removeItem(tabKey);
+    });
+})();
+</script>
+{% endblock %}

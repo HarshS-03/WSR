@@ -1,0 +1,27 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+
+# Virtual environments
+env/
+venv/
+.venv/
+ENV/
+
+# Django
+*.log
+ 
+ 
+
+ 
+
+# IDEs and editors
+.vscode/
+.idea/
+ 

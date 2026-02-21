@@ -1,0 +1,47 @@
+.wave-button {
+     position: relative;
+     overflow: hidden;
+     background:yellow;
+     color: white;
+     border: none;
+     padding: 15px 40px;
+     font-size: 18px;
+     border-radius: 8px;
+     cursor: pointer;
+     z-index: 1;
+   }
+   
+   .wave-button .wave {
+     position: absolute;
+     left: 0;
+     bottom: -100%;
+     width: 200%;
+     height: 200%;
+     background: rgba(255, 255, 255, 0.3);
+     border-radius: 40%;
+     animation: wave 5s linear infinite, fill-up 3s ease-in-out forwards;
+     z-index: 0;
+   }
+   
+   @keyframes wave {
+     0% {
+       transform: translateX(-50%) rotate(0deg);
+     }
+     100% {
+       transform: translateX(-50%) rotate(360deg);
+     }
+   }
+   
+   @keyframes fill-up {
+     0% {
+       bottom: -100%;
+     }
+     100% {
+       bottom: 0%;
+     }
+   }
+   
+   .wave-button span {
+     pointer-events: none;
+   }
+   

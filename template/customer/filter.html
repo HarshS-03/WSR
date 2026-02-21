@@ -1,0 +1,98 @@
+{% extends 'customer/base.html' %} {% load static %} {% block title %} Wholesale
+Snack Retail{% endblock title %} {% block content %}
+
+<div class="content-wraper pt-20 pb-100">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- shop-top-bar end -->
+        <!-- shop-products-wrapper start -->
+        <div class="shop-products-wrapper">
+          <div class="tab-content">
+            <div
+              id="grid-view"
+              class="tab-pane fade active show"
+              role="tabpanel"
+            >
+              <div class="product-area shop-product-area">
+                <div class="row">
+                  {% for product in product %} {% if product.qty > 0 %}
+
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- single-product-wrap start -->
+                    <div class="single-product-wrap">
+                      <div class="product-image">
+                        <a href="/customer/product/{{product.name}}">
+                          <img
+                            src="/media/{{ product.image }}"
+                            alt="Li's Product Image"
+                          />
+                        </a>
+                        <!-- <span class="sticker">New</span> -->
+                      </div>
+                      <div class="product_desc">
+                        <div class="product_desc_info">
+                          <div class="product-review">
+                            <h5 class="manufacturer">
+                              <p>{{ product.srtdesc }}</p>
+                            </h5>
+                          </div>
+                          <h5 id="prodName{{forloop.counter}}">
+                            {{ product.name }}
+                          </h5>
+                          <div class="price-box">
+                            <span
+                              class="new-price"
+                              id="prodPrice{{forloop.counter}}"
+                              >₹{{ product.price }}</span
+                            >
+                          </div>
+                        </div>
+                        <div class="add-actions">
+                          <ul class="add-actions-link">
+                            {% if user.is_authenticated %}
+
+                            <li class="add-cart active">
+                              <a
+                                href="/customer/addCart"
+                                class="cart"
+                                id="pr{{product.pid}}"
+                                >Add to cart</a
+                              >
+                            </li>
+                            {% else %}
+
+                            <li class="add-cart active">
+                              <a href="/customer/login">Add to cart</a>
+                            </li>
+                            {% endif %}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- single-product-wrap end -->
+                  </div>
+                  {% endif %} {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- shop-products-wrapper end -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block js %} if(localStorage.getItem('cart')==null){ var
+cart={}; localStorage.setItem('cart',JSON.stringify(cart)); } else{ cart =
+JSON.parse(localStorage.getItem('cart'));
+document.getElementById('cartTotal').innerHTML = Object.keys(cart).length; }
+$('.cart').click(function(){ var idstr = this.id.toString(); console.log(idstr);
+let ID = idstr.substring(2,); let name =
+document.getElementById(`prodName${ID}`).innerHTML.trim(); let price =
+Number.parseInt(document.getElementById(`prodPrice${ID}`).innerHTML.trim().substring(1,));
+let qty = 1; console.log(name+price); // if(cart[idstr] != undefined){ //
+cart[idstr] = cart[idstr] + 1; // } // else{ cart[idstr] = [name,price,qty]; //
+} console.log(cart); localStorage.setItem('cart',JSON.stringify(cart));
+document.getElementById('cartTotal').innerHTML = Object.keys(cart).length; });
+{% endblock %}

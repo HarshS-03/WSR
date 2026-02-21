@@ -1,0 +1,171 @@
+{% extends 'customer/base.html' %} {% load static %}
+{% block title %} Wholesale Snack Retail | Cart {% endblock title %}
+{% block content %}
+<div class="Shopping-cart-area pt-60 pb-60">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <form action="#">
+          <div class="table-content table-responsive">
+            <table class="table" id="table">
+              <thead>
+                <tr>
+                  <th class="li-product-remove">remove</th>
+                  <th class="cart-product-name">Product</th>
+                  <th class="li-product-price">Unit Price</th>
+                  <th class="li-product-quantity">Quantity</th>
+                  <th class="li-product-subtotal">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tHead">
+
+              </tbody>
+            </table>
+          </div>
+          <div id="message">
+          </div>
+          <div class="row">
+            <div class="col-12">
+               
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5 ml-auto">
+              <div class="cart-page-total">
+                <h2>Cart totals</h2>
+                <ul>
+                  <li>Total <span id="finalTotal">0</span></li>
+                </ul>
+                <a href="/customer/checkout">Proceed to checkout</a>
+              </div>
+             
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+
+
+function increament(id) {
+  const qtyInput = document.getElementById(`qty${id}`);
+  qtyInput.value = parseInt(qtyInput.value) + 12;
+  updateValue(id);
+}
+
+function decreament(id) {
+  const qtyInput = document.getElementById(`qty${id}`);
+  const currentValue = parseInt(qtyInput.value);
+
+  if (currentValue <= 12) {
+    qtyInput.value = 12; // prevent going below 12
+  } else {
+    qtyInput.value = currentValue - 12;
+    updateValue(id);
+  }
+}
+
+
+function updateValue(id) {
+  let qty = Number.parseInt(document.getElementById(`qty${id}`).value);
+  let price = Number.parseInt(document.getElementById(`price${id}`).innerHTML);
+  let total = qty * price;
+  document.getElementById(`total${id}`).innerHTML = total;
+  findFinalTotal();
+  updateCart(id);
+}
+
+if (localStorage.getItem('cart') == null) {
+  let myStr = `<h1 style="font-family: Arial, Helvetica, sans-serif; margin-top: 30px; margin-bottom: 20px; color: #fed700; transition: all 0.2s; animation: fadeIn 2s ease; text-align: center;"> Add Some Items Before Checkout </h1>`;
+  $('#message').append(myStr);
+}
+else {
+  cart = JSON.parse(localStorage.getItem('cart'));
+  document.getElementById('cartTotal').innerHTML = Object.keys(cart).length;
+}
+
+
+if ($.isEmptyObject(cart)) {
+  let mystr = `<h3 style="font-family: Arial, Helvetica, sans-serif; margin-top: 30px; margin-bottom: 20px; color: #fed700; transition: all 0.2s; animation: fadeIn 2s ease; text-align: center;">Your cart is empty, please add some items to your cart before checking out!</h3>`;
+  <!-- document.getElementById('items').innerHTML = mystr; -->
+  $('#message').append(mystr);
+
+
+}
+
+else {
+
+  for (item in cart) {
+    console.log(cart[item])
+    let name = cart[item][0];
+    let price = cart[item][1];
+    let qty = 12;
+    // let qty = Number(cart[item][2]);
+
+    let id = item.substring(2,);
+
+    mystr = `  <tr>
+    <td class="li-product-remove"><div onclick="cancel(${id})"><i class="fa fa-times"></i></div></td>      
+        <td class="li-product-name">
+          <a href="#"> ${name} </a>
+        </td>
+        <td class="li-product-price">
+          <span class="amount" id="price${id}">${price}</span>
+        </td>
+        <td class="quantity">
+          <label>Quantity</label>
+          <div class="cart-plus-minus">
+            <input
+              class="cart-plus-minus-box"
+              value="${qty}"
+              type="text" id="qty${id}"
+            />
+            <div class="dec qtybutton" onclick="decreament(${id})">
+              <i class="fa fa-angle-down" ></i>
+            </div>
+            <div class="inc qtybutton" onclick="increament(${id})">
+              <i class="fa fa-angle-up"></i>
+            </div>
+          </div>
+        </td>
+        <td class="product-subtotal">
+          <div class="amount" id="total${id}">${price*qty}</div>
+        </td>
+      </tr>`;
+    $('#tHead').append(mystr);
+  }
+  findFinalTotal();
+}
+
+
+function findFinalTotal() {
+  let sum = 0;
+
+  for (item in cart) {
+    let id = item.substring(2,);
+    sum += Number.parseInt(document.getElementById(`total${id}`).innerHTML.trim());
+  }
+  document.getElementById('finalTotal').innerHTML = sum;
+  localStorage.setItem('total', sum);
+}
+
+function updateCart(id) {
+  var idstr = "pr" + id;
+  cart[idstr][2] = Number.parseInt(document.getElementById(`qty${id}`).value);
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function cancel(id) {
+  let idStr= "pr" + id;
+  console.log(idStr);
+  delete(cart[idStr]);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  location.reload();
+  // localStorage.removeItem(cart[idStr]);  
+}
+
+{% endblock %}

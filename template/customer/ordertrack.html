@@ -1,0 +1,67 @@
+{% extends 'customer/base.html' %} {% block title %} Wholesale Snack Retail |
+Track Order {% endblock title %} {% load static %} {% block content %}
+<div class="page-section mt-40 mb-40">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-12 col-xs-12 col-lg-8 mb-30">
+        {% for message in messages %}
+        <div
+          class="alert alert-{{ message.tags }} alert-dismissible fade show my-4"
+          role="alert"
+        >
+          {{ message }}
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+        {% endfor %}
+
+        <!-- Order Tracking Form -->
+        <form action="/customer/ordertrack/" method="post">
+          {% csrf_token %}
+          <div class="login-form">
+            <h4 class="login-title">Your Order</h4>
+            <div class="row">
+              <div class="col-md-8 col-8 mb-20">
+                <label>Order ID:</label>
+                <input
+                  class="mb-0"
+                  type="text"
+                  placeholder="Enter your order ID"
+                  name="orderId"
+                  id="orderId"
+                  required
+                />
+              </div>
+
+              <div class="col-md-4">
+                <button type="submit" class="register-button mt-35">
+                  Search
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <!-- Display Order Status -->
+        {% if orders %}
+        <div class="status mt-4">
+          <h1 class="h">Order Status</h1>
+          <ul class="ul">
+            {% for order in orders %}
+            <li class="li">
+              Order ID: {{ order.orderId }} | Status: {{ order.status }} | Last
+              Updated: {{ order.updated_at }}
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

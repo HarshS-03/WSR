@@ -1,0 +1,92 @@
+{% extends 'customer/base.html' %} {% load static %} {% block title %} Wholesale
+Snack Retail | Login {% endblock title %} {% block content%}
+<div class="page-section mt-40 mb-40">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-12 col-xs-12 col-lg-8 mb-30">
+        <!-- Login Form s-->
+        <div class="container"></div>
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show my-4" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+      </div>
+      {% if user.is_authenticated %}
+
+      <form action="/customer" method="post" name="registerForm">
+        {% csrf_token %}
+        <div class="login-form">
+          <h4 class="login-title">Details</h4>
+          <div class="row">
+            <div class="col-md-6 col-12 mb-20">
+              <label>Name</label>
+              <input class="mb-0" type="text" placeholder="Name" name="name" id="name" value="{{user.first_name}}" />
+            </div>
+            <div class="col-md-6 col-12 mb-20">
+              <label>User Name</label>
+              <input class="mb-0" type="text" placeholder="User Name" name="username" id="username"
+                value="{{user.username}}" />
+            </div>
+            <div class="col-md-12 mb-20">
+              <label>Email Address*</label>
+              <input class="mb-0" type="email" placeholder="Email Address" name="email" id="email"
+                value="{{user.email}}" />
+            </div>
+          </div>
+        </div>
+      </form>
+      <form action="/customer/logout">
+        {% csrf_token %}
+        <button class="btn btn-warning" style="margin-left: 50px; margin-top: 30px">
+          Logout
+        </button>
+      </form>
+      {% else %}
+
+      <!-- !Login Start -->
+      <form action="/customer/login" method="post">
+        {% csrf_token %}
+        <div class="login-form">
+          <h4 class="login-title">Login</h4>
+          <div class="row">
+            <div class="col-md-12 col-12 mb-20">
+              <label>User Name*</label>
+              <input class="mb-0" type="text" placeholder="User Name" name="loginusername" id="loginusername"
+                required />
+            </div>
+            <div class="col-12 mb-20">
+              <label>Password</label>
+              <input class="mb-0" type="password" placeholder="Password" name="loginpassword" id="loginpassword"
+                required />
+            </div>
+
+            <div class="col-md-8">
+              <div class="check-box d-inline-block ml-0 ml-md-2 mt-10">
+                <input type="checkbox" id="remember_me" />
+                <!-- <label for="remember_me">Remember me</label> -->
+              </div>
+            </div>
+            <div>
+              <a>Do not Have An Account ? </a><a href="/customer/register">Click Here</a>
+            </div>
+            <br />
+            <div class="col-md-4 mt-10 mb-20 text-left text-md-right">
+              <a href="/customer/fpass">Forgotten pasward?</a>
+            </div>
+            <br />
+            <div class="col-md-12">
+              <button class="cart add">Login</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- !Login End -->
+
+      {% endif %}
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}
